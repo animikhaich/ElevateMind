@@ -169,3 +169,14 @@ results
 .cache
 .huggingface_cache
 *.ipynb
+
+
+# Models
+*.h5
+*.hdf5
+*.hdf5_lock
+*.model
+*.pt
+*.pth
+*.ckpt
+*.bin
