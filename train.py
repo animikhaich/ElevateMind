@@ -16,8 +16,8 @@ argparser.add_argument('--epochs', type=int, default=3)
 argparser.add_argument('--grad_acc_steps', type=int, default=16)
 argparser.add_argument('--seed', type=int, default=2023)
 argparser.add_argument('--temperature', type=float, default=0.1)
-argparser.add_argument('--max_new_tokens', type=int, default=512)
-argparser.add_argument('--max_seq_len', type=int, default=512)
+argparser.add_argument('--gen_seq_len', type=int, default=512)
+argparser.add_argument('--input_seq_len', type=int, default=512)
 argparser.add_argument('--cap_dsize', type=int, default=100_000)
 argparser.add_argument('--save_dir', type=str, default=os.path.join(os.path.dirname(__file__), 'models'))
 argparser.add_argument('--hf_token', type=str, default=os.environ.get('HUGGING_FACE_HUB_TOKEN'))
@@ -98,9 +98,7 @@ output_features:
 
 prompt:
   template: >-
-    You are an expert care giver who will understand the 'Input' and try to help the user based
-    on the 'Context' from prior conversation with the same user where 'usr' is the 'User' and a 'sys' is your previous response.
-    Write a response that appropriately that provides supportive positive feedback to address the User's concern.
+    As an expert caregiver, provide supportive positive feedback based on prior conversations with the user ('usr') and your previous responses ('sys') to address their concerns.
 
     ### Input: {input_placeholder}
 
@@ -110,7 +108,7 @@ prompt:
 
 generation:
   temperature: {args.temperature}
-  max_new_tokens: {args.max_new_tokens}
+  max_new_tokens: {args.gen_seq_len}
 
 adapter:
   type: lora
@@ -119,7 +117,7 @@ quantization:
   bits: 4
 
 preprocessing:
-  global_max_sequence_length: {args.max_seq_len}
+  global_max_sequence_length: {args.input_seq_len}
   split:
     type: random
     probabilities:
