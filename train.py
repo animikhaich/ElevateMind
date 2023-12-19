@@ -12,12 +12,14 @@ argparser.add_argument('--data_path', type=str, default='data/conversations.csv'
 argparser.add_argument('--model_name', type=str, default='meta-llama/Llama-2-7b-hf')
 argparser.add_argument('--lr', type=float, default=0.0004)
 argparser.add_argument('--batch_size', type=int, default=2)
-argparser.add_argument('--epochs', type=int, default=5)
+argparser.add_argument('--epochs', type=int, default=3)
 argparser.add_argument('--grad_acc_steps', type=int, default=16)
 argparser.add_argument('--seed', type=int, default=2023)
 argparser.add_argument('--temperature', type=float, default=0.1)
 argparser.add_argument('--max_new_tokens', type=int, default=512)
 argparser.add_argument('--max_seq_len', type=int, default=512)
+argparser.add_argument('--cap_dsize', type=int, default=100_000)
+argparser.add_argument('--save_dir', type=str, default=os.path.join(os.path.dirname(__file__), 'models'))
 argparser.add_argument('--hf_token', type=str, default=os.environ.get('HUGGING_FACE_HUB_TOKEN'))
 argparser.add_argument('--cache_dir', type=str, default=os.path.join(os.path.dirname(__file__), 'cache'))
 
@@ -35,17 +37,33 @@ assert os.environ["HF_MODELS_CACHE"]
 assert os.environ["HF_HOME"]
 
 
+# Set seeds
+torch.manual_seed(args.seed)
+np.random.seed(args.seed)
+
 from ludwig.api import LudwigModel
 
 # Load data
 df = pd.read_csv(args.data_path)
 df = df.where(df.notna(), "") # Replace NaN with empty string
 
+dsize = len(df)
+
+# Cap dataset size
+if args.cap_dsize > 0:
+    df = df.sample(args.cap_dsize)
+
+print(f"Dataset size reduced from: {dsize} -> {len(df)}")
+
+
 # Shuffle and Split data into train, val and test: 80%, 10%, 10%
 total_rows = len(df)
 split_0_count = int(total_rows * 0.8)
 split_1_count = int(total_rows * 0.10)
 split_2_count = total_rows - split_0_count - split_1_count
+
+print(f"Counts for train, val and test: {split_0_count}, {split_1_count}, {split_2_count}")
+
 split_values = np.concatenate([
     np.zeros(split_0_count),
     np.ones(split_1_count),
@@ -71,7 +89,7 @@ model_type: llm
 base_model: meta-llama/Llama-2-7b-hf
 
 input_features:
-  - name: instruction
+  - name: user_input
     type: text
 
 output_features:
@@ -124,3 +142,6 @@ trainer:
 
 model = LudwigModel(config=qlora_fine_tuning_config, logging_level=logging.INFO)
 results = model.train(dataset=df)
+
+# Save model
+model.save(args.save_dir)
