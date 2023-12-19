@@ -29,10 +29,9 @@ for element in data:
             new_row = pd.DataFrame([[user_input, context, text, idx]], columns=['user_input', 'context', 'output', 'data_idx'])
             df = pd.concat([df, new_row], ignore_index=True)
             context += f"usr:{user_input}\nsys:{text}\n"
-            # if len(context + f"usr:{user_input}\nsys:{text}\n") > 3500:
-            #     content = chatGPTSummarize(context)
             user_input = ""
     
+    idx += 1
     pbar.update(1)
 
 os.makedirs('data', exist_ok=True)
