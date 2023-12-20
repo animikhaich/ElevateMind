@@ -8,17 +8,17 @@ import argparse
 
 argparser = argparse.ArgumentParser()
 
-argparser.add_argument('--data_path', type=str, default='data/conversations.csv')
+argparser.add_argument('--data_path', type=str, default='data/conversations_summarized_25K.csv')
 argparser.add_argument('--model_name', type=str, default='meta-llama/Llama-2-7b-hf')
 argparser.add_argument('--lr', type=float, default=0.0004)
-argparser.add_argument('--batch_size', type=int, default=2)
+argparser.add_argument('--batch_size', type=int, default=1)
 argparser.add_argument('--epochs', type=int, default=3)
 argparser.add_argument('--grad_acc_steps', type=int, default=16)
 argparser.add_argument('--seed', type=int, default=2023)
 argparser.add_argument('--temperature', type=float, default=0.1)
 argparser.add_argument('--gen_seq_len', type=int, default=512)
 argparser.add_argument('--input_seq_len', type=int, default=512)
-argparser.add_argument('--cap_dsize', type=int, default=100_000)
+argparser.add_argument('--cap_dsize', type=int, default=None)
 argparser.add_argument('--save_dir', type=str, default=os.path.join(os.path.dirname(__file__), 'models'))
 argparser.add_argument('--hf_token', type=str, default=os.environ.get('HUGGING_FACE_HUB_TOKEN'))
 argparser.add_argument('--cache_dir', type=str, default=os.path.join(os.path.dirname(__file__), 'cache'))
@@ -50,7 +50,7 @@ df = df.where(df.notna(), "") # Replace NaN with empty string
 dsize = len(df)
 
 # Cap dataset size
-if args.cap_dsize > 0:
+if args.cap_dsize is not None and args.cap_dsize > 0:
     df = df.sample(args.cap_dsize)
 
 print(f"Dataset size reduced from: {dsize} -> {len(df)}")
