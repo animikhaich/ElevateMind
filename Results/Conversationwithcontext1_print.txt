@@ -1,0 +1,10 @@
+user_input                                                                           output                                                                                   
+                             Hi, I am really upset I am not doing good in my career.                                                                      what is your career?
+I am an engineer and I am currently pursuing my Masters, but my grades are not good.                                                                what are your grades like?
+                                 I am getting less than 8 GPA. How do I handle this?                                                                    are you studying hard?
+                                     No I am a bit distracted due to family illness.                                                                are you taking any breaks?
+                      No my semester is running and I dont have time for any breaks.                                                                             i understand.
+       I am feeling low because of this situation. Kindly suggest how I handle this.                                                                  i am sorry to hear that.
+                               What can I possibly do to come out of this situation. you can try to take some time off from work and spend some quality time with your family.
+                                                    Sure! Thanks for the suggestion!                                                                          you are welcome!
+                                                                                Bye!                                                                                      Bye!

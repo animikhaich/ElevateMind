@@ -1,0 +1,9 @@
+user_input                                                                           output                                                                                   
+                             Hi, I am really upset I am not doing good in my career.                                                         What is been challenging for you?
+I am an engineer and I am currently pursuing my Masters, but my grades are not good.  Have you considered talking to your professors or seeking additional support to improve?
+                                 I am getting less than 8 GPA. How do I handle this?      Seek support, review study methods, and consider talking to professors for guidance.
+                                        I am a bit distracted due to family illness.      Consider discussing your situation with your professors for possible accommodations.
+                         My semester is running and I dont have time for any breaks.                           Prioritize tasks and try to create small moments for self-care.
+       I am feeling low because of this situation. Kindly suggest how I handle this.     Seek support from friends, family, or a counselor for guidance and emotional support.
+                                                                             Thanks!                                                                          You are welcome.
+                                                                                Bye!                                                                                      Bye!

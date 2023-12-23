@@ -1,0 +1,10 @@
+user_input                                                                           context output                                data_idx
+                             Hi, I am really upset I am not doing good in my career.                          what is your career?  1      
+I am an engineer and I am currently pursuing my Masters, but my grades are not good.                    what are your grades like?  3      
+                                 I am getting less than 8 GPA. How do I handle this?                        what are you studying?  5      
+                                              I am studying Artificial Intelligence.         that sounds like a fascinating field.  7      
+                          But I am not doing well. I am feeling low because of that.                                 i understand.  9      
+                                                Kindly help me in the above problem.                          what is the problem? 11      
+                                                  I am not doing well in my studies.                             what is going on? 13      
+                                                                    Nothing! Thanks!                               you're welcome! 15      
+                                                                                Bye!                                          Bye! 17      

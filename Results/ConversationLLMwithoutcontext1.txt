@@ -1,0 +1,8 @@
+user_input                                                                                                    context output                   data_idx
+                                                      Hi, I am really upset I am not doing good in my career.         i am sorry to hear that.  1      
+I am an engineer and I am currently doing my Masters but I am doing bad with my grades. How to overcome this?         i am sorry to hear that.  3      
+                                                        Kindly suggest how I can come out of this depression.                    i understand.  5      
+                                                                                Kindly suggest what I can do?                    i understand.  7      
+                                I am feeling low because of this situation. Kindly suggest how I handle this.         i am sorry to hear that.  9      
+                                                                                      Can you help me please!                                  11      
+                                                                                                         Bye!                             Bye! 13      
